@@ -1,0 +1,29 @@
+---
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library('plotly')
+Humans <- c('Michael Freeman', 'Andrea', 'Dylan', 'Bao', 'Jack')
+Bodywt <- c(121.5, 50.2, 150.3, 60.8, 201)
+Brainwt <- c(1190, 1003, 46, 580, 203)
+data <- data.frame(Humans, Bodywt, Brainwt)
+
+chart <- plot_ly(data, x = ~Bodywt, y = ~Brainwt, type = 'scatter',
+        mode = 'text', text = ~Humans, textposition = 'middle right',
+        textfont = list(color = '#000000', size = 16)) %>%
+        layout(title = 'Instructor Brain and Body Weight',
+         xaxis = list(title = 'Body Weight (kg)',
+                      zeroline = TRUE,
+                      range = c(0, 250)),
+         yaxis = list(title = 'Brain Weight (g)',
+                      range = c(0,1400)))
+
+```
+
+#Interactive Chart
+
+This is an interactive chart showing the body and brain weights of various INFO 201 instructors.
+(Taken from the [documentation](https://plot.ly/r/text-and-annotations/)).
+
+`r chart`
